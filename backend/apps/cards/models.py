@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import uuid
 
 class Card(models.Model):
-    id = models.UUIDField(primary_key=True, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     question = models.CharField(max_length=128)
     answer = models.TextField(max_length=512, blank=True)
     category = models.ForeignKey("Category", on_delete=models.CASCADE, blank=True, null=True)
@@ -16,7 +17,7 @@ class Card(models.Model):
         return (f'{self.id}. {self.question}')
 
 class Category(models.Model):
-    id = models.UUIDField(primary_key=True, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=128)
 
     class Meta:
