@@ -5,8 +5,14 @@ class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
         fields = ["id", "question", "answer", "category"]
+        extra_kwargs = {
+            'id': {'read_only': True}
+        }
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+        extra_kwargs = {
+            'id': {'read_only': True}
+        }
