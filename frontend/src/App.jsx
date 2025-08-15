@@ -14,7 +14,11 @@ function App() {
             {
               key: 'cards',
               label: <Link to="/cards">Cards</Link>
-            }
+            }, 
+            {
+              key: 'categories',
+              label: <Link to="/categories">Categories</Link>
+            },
           ]}/>
         </Header>
         <Content>
