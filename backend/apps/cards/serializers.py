@@ -4,15 +4,18 @@ from .models import Card, Category
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
-        fields = ["id", "question", "answer", "category"]
-        extra_kwargs = {
-            'id': {'read_only': True}
-        }
-
+        fields = '__all__'
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
-        extra_kwargs = {
-            'id': {'read_only': True}
-        }
+
+class CreateCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card
+        fields = ['question', 'answer', 'category']
+
+class CreateCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['title']
