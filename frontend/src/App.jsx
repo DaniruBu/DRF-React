@@ -12,6 +12,10 @@ function App() {
         <Header>
           <Menu theme="dark" mode="horizontal" items={[
             {
+              key: 'home',
+              label: <Link to="/">Home</Link>
+            }, 
+            {
               key: 'cards',
               label: <Link to="/cards">Cards</Link>
             }, 
