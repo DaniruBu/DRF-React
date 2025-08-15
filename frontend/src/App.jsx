@@ -5,10 +5,9 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer} = Layout;
 
 function App() {
-
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout className="app-layout">
         <Header>
           <Menu theme="dark" mode="horizontal" items={[
             {
@@ -25,10 +24,10 @@ function App() {
             },
           ]}/>
         </Header>
-        <Content>
+        <Content className="app-content">
           <AppRouter />
         </Content>
-        <Footer>
+        <Footer className="app-footer">
           <p>DRF-React ©2025</p>
         </Footer>
       </Layout>

@@ -13,7 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CreateCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
-        fields = ['question', 'answer', 'category']
+        fields = ['id', 'question', 'answer', 'category', 'created_at']
 
 class CreateCategorySerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,17 +1,22 @@
 import CardItem from './CardItem';
-import { Space } from 'antd';
 
-const CardsList = ({ cards = [] }) => {  
+const CardsList = ({ cards, remove, deletingCardId = null, categories = [] }) => {  
     return (
         <div>
             {cards?.length > 0 ? (
-                <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                <div className="cards-grid">
                     {cards.map((card) => (
-                        <CardItem key={card.id} card={card} />
+                        <CardItem 
+                            key={card.id} 
+                            card={card} 
+                            remove={remove}
+                            isDeleting={deletingCardId === card.id}
+                            categories={categories}
+                        />
                     ))}
-                </Space>
+                </div>
             ) : (
-                <p>No cards available</p>
+                <p>Нет доступных карт</p>
             )}
         </div>
     )

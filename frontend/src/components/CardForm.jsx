@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import MyButton from './MyButton'
 import MyInput from './MyInput'
+import { LoadingOutlined } from '@ant-design/icons'
+import { Select } from 'antd'
 
 const CardForm = ({ create, categories = [], loading = false }) => {
     const [card, setCard] = useState({ question: '', answer: '', category: '' })
@@ -33,29 +35,26 @@ const CardForm = ({ create, categories = [], loading = false }) => {
                 value={card.answer} 
                 onChange={(e) => setCard({...card, answer: e.target.value})} 
             />
-            <select 
-                value={card.category} 
-                onChange={(e) => setCard({...card, category: e.target.value})}
-                style={{
-                    padding: '8px',
-                    margin: '5px',
-                    borderRadius: '4px',
-                    border: '1px solid #ccc'
-                }}
+            <Select
+                placeholder="Select Category (optional)"
+                value={card.category || undefined}
+                onChange={(value) => setCard({...card, category: value})}
+                className="category-select"
+                allowClear
             >
-                <option value="">Select Category (optional)</option>
                 {categories.map(category => (
-                    <option key={category.id} value={category.id}>
+                    <Select.Option key={category.id} value={category.id}>
                         {category.title}
-                    </option>
+                    </Select.Option>
                 ))}
-            </select>
+            </Select>
             <MyButton 
                 type="primary" 
                 disabled={loading}
                 onClick={addnewcard}
+                icon={loading ? <LoadingOutlined /> : null}
             >
-                {loading ? 'Adding...' : 'Add Card'}
+                {loading ? 'Создание...' : 'Добавить карту'}
             </MyButton>
         </form>
     );

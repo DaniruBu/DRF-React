@@ -1,7 +1,13 @@
 import { Card } from "antd"
-const CategoryItem = (props) => {
+
+const CategoryItem = ({ category }) => {
     return (
-        <Card title={props.category.title}/>
+        <Card 
+            title={category.title}
+            className="category-item"
+            bodyStyle={{ height: '100%', padding: '16px' }}
+        />
     )
 }
+
 export default CategoryItem
