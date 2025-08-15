@@ -2,27 +2,34 @@ import '@ant-design/v5-patch-for-react-19';
 import {BrowserRouter, Link} from 'react-router-dom'
 import AppRouter from './components/AppRouter';
 import { Layout, Menu } from 'antd';
+
 const { Header, Content, Footer} = Layout;
 
 function App() {
+  const menuItems = [
+    {
+      key: 'home',
+      label: <Link to="/">Главная</Link>
+    }, 
+    {
+      key: 'cards',
+      label: <Link to="/cards">Карты</Link>
+    },
+    {
+      key: 'categories',
+      label: <Link to="/categories">Категории</Link>
+    },
+  ];
+
   return (
     <BrowserRouter>
       <Layout className="app-layout">
         <Header>
-          <Menu theme="dark" mode="horizontal" items={[
-            {
-              key: 'home',
-              label: <Link to="/">Home</Link>
-            }, 
-            {
-              key: 'cards',
-              label: <Link to="/cards">Cards</Link>
-            }, 
-            {
-              key: 'categories',
-              label: <Link to="/categories">Categories</Link>
-            },
-          ]}/>
+          <Menu 
+            theme="dark" 
+            mode="horizontal" 
+            items={menuItems}
+          />
         </Header>
         <Content className="app-content">
           <AppRouter />

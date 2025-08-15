@@ -11,9 +11,8 @@ const CardsItem = ({ card, remove, isDeleting = false, categories = [] }) => {
 
     return (
         <Card 
-            title={`ID: ${card.id}`}
+            title={`Карта #${card.id}`}
             className="card-item"
-            bodyStyle={{ height: '100%', padding: '16px' }}
         >
             <div className="card-content">
                 <div className="card-text">

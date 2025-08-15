@@ -65,6 +65,7 @@ function CardsPage(){
             setDeletingCardId(null)
         }
     }
+
     const isInitialLoading = isLoadingCards || isLoadingCategories
 
     return (
@@ -73,21 +74,26 @@ function CardsPage(){
             size="large"
             tip="Загрузка данных..."
         >
-            <div style={{ minHeight: '200px' }}>
-                <div className="card-form">
-                    <CardForm 
-                        create={createCard} 
-                        categories={categories}
-                        loading={loading}
-                    />
-                </div>
+            <div>
+                <h1>Карты</h1>
+                
+                <CardForm 
+                    create={createCard} 
+                    categories={categories}
+                    loading={loading}
+                />
+
                 <div className="cards-list">
-                    <CardsList 
-                        remove={deletingCard} 
-                        cards={cards} 
-                        deletingCardId={deletingCardId}
-                        categories={categories}
-                    />
+                    {cards?.length > 0 ? (
+                        <CardsList 
+                            remove={deletingCard} 
+                            cards={cards} 
+                            deletingCardId={deletingCardId}
+                            categories={categories}
+                        />
+                    ) : (
+                        <p>Нет доступных карт</p>
+                    )}
                 </div>
             </div>
         </Spin>

@@ -5,8 +5,9 @@ const CategoryItem = ({ category }) => {
         <Card 
             title={category.title}
             className="category-item"
-            bodyStyle={{ height: '100%', padding: '16px' }}
-        />
+        >
+            <p><strong>ID:</strong> {category.id}</p>
+        </Card>
     )
 }
 
