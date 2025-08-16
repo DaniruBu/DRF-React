@@ -6,4 +6,6 @@ const MyInput = ({...props}) => {
     );
 };
 
+MyInput.TextArea = Input.TextArea;
+
 export default MyInput;

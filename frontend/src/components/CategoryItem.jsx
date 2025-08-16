@@ -1,7 +1,14 @@
 import { Card } from "antd"
-const CategoryItem = (props) => {
+
+const CategoryItem = ({ category }) => {
     return (
-        <Card title={props.category.title}/>
+        <Card 
+            title={category.title}
+            className="category-item"
+        >
+            <p><strong>ID:</strong> {category.id}</p>
+        </Card>
     )
 }
+
 export default CategoryItem
