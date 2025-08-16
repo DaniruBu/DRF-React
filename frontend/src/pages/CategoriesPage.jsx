@@ -7,28 +7,30 @@ import { Spin, message } from "antd";
 function CategoriesPage() {
     const [categories, setCategories] = useState([])
 
-    const [fetchCategories, isLoading] = useFetching(async () => {
-        try {
-            const response = await CategoriesService.getCategories()
-            setCategories(response.data)
-        } catch (error) {
-            message.error('Ошибка при загрузке категорий')
-            console.error('Error fetching categories:', error)
-        }
+    const [fetchCategories, isLoading, error] = useFetching(async () => {
+        const response = await CategoriesService.getAll()
+        setCategories(response.data)
     })
+
+    useEffect(() => {
+        if (error) message.error('Ошибка загрузки категорий')
+    }, [error])
 
     useEffect(() => {
         fetchCategories()
     }, [])
 
     return (
-        <Spin 
-            spinning={isLoading} 
-            size="large"
-            tip="Загрузка категорий..."
-        >
-            <div style={{ minHeight: '200px' }}>
-                <CategoriesList categories={categories}/>
+        <Spin spinning={isLoading}>
+            <div>
+                <h1>Категории</h1>
+                <div>
+                    {categories?.length > 0 ? (
+                        <CategoriesList categories={categories}/>
+                    ) : (
+                        <p>Нет категорий</p>
+                    )}
+                </div>
             </div>
         </Spin>
     )

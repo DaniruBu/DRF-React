@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'antd'
+import { Link } from 'react-router-dom'
 import MyButton from './MyButton';
 import { LoadingOutlined } from '@ant-design/icons'
 
@@ -21,6 +22,14 @@ const CardsItem = ({ card, remove, isDeleting = false, categories = [] }) => {
                     <p><strong>Категория:</strong> {getCategoryName(card.category)}</p>
                 </div>
                 <div className="card-actions">
+                    <Link to={`/cards/${card.id}`}>
+                        <MyButton 
+                            type="primary"
+                            size="small"
+                        >
+                            Подробнее
+                        </MyButton>
+                    </Link>
                     <MyButton 
                         danger 
                         onClick={() => remove(card)}

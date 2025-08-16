@@ -12,25 +12,20 @@ function CardsPage(){
     const [loading, setLoading] = useState(false)
     const [deletingCardId, setDeletingCardId] = useState(null)
 
-    const [fetchCards, isLoadingCards] = useFetching(async () => {
-        try {
-            const response = await CardsService.getCardsAll()
-            setCards(response.data)
-        } catch (error) {
-            message.error('Ошибка при загрузке карт')
-            console.error('Error fetching cards:', error)
-        }
+    const [fetchCards, isLoadingCards, errorCards] = useFetching(async () => {
+        const response = await CardsService.getAll()
+        setCards(response.data)
     });
 
-    const [fetchCategories, isLoadingCategories] = useFetching(async () => {
-        try {
-            const response = await CategoriesService.getCategories()
-            setCategories(response.data)
-        } catch (error) {
-            message.error('Ошибка при загрузке категорий')
-            console.error('Error fetching categories:', error)
-        }
+    const [fetchCategories, isLoadingCategories, errorCategories] = useFetching(async () => {
+        const response = await CategoriesService.getAll()
+        setCategories(response.data)
     });
+
+    useEffect(() => {
+        if (errorCards) message.error('Ошибка загрузки карт')
+        if (errorCategories) message.error('Ошибка загрузки категорий')
+    }, [errorCards, errorCategories])
 
     useEffect(() => {
         fetchCards()
@@ -40,12 +35,11 @@ function CardsPage(){
     const createCard = async (cardData) => {
         setLoading(true)
         try {
-            const response = await CardsService.createCard(cardData)
+            const response = await CardsService.create(cardData)
             setCards([...cards, response.data])
-            message.success('Карта успешно создана')
+            message.success('Карта создана')
         } catch (error) {
-            message.error('Ошибка при создании карты')
-            console.error('Error creating card:', error)
+            message.error('Ошибка создания карты')
         } finally {
             setLoading(false)
         }
@@ -54,34 +48,21 @@ function CardsPage(){
     const deletingCard = async (card) => {
         setDeletingCardId(card.id)
         try {
-            await CardsService.deleteCard(card.id)
-            await new Promise(resolve => setTimeout(resolve, 500))
+            await CardsService.delete(card.id)
             setCards(cards.filter(c => c.id !== card.id))
-            message.success('Карта успешно удалена')
+            message.success('Карта удалена')
         } catch (error) {
-            message.error('Ошибка при удалении карты')
-            console.error('Error deleting card:', error)
+            message.error('Ошибка удаления карты')
         } finally {
             setDeletingCardId(null)
         }
     }
 
-    const isInitialLoading = isLoadingCards || isLoadingCategories
-
     return (
-        <Spin 
-            spinning={isInitialLoading} 
-            size="large"
-            tip="Загрузка данных..."
-        >
+        <Spin spinning={isLoadingCards || isLoadingCategories}>
             <div>
                 <h1>Карты</h1> 
-                <CardForm 
-                    create={createCard} 
-                    categories={categories}
-                    loading={loading}
-                />
-
+                <CardForm create={createCard} categories={categories} loading={loading} />
                 <div className="cards-list">
                     {cards?.length > 0 ? (
                         <CardsList 
@@ -91,7 +72,7 @@ function CardsPage(){
                             categories={categories}
                         />
                     ) : (
-                        <p>Нет доступных карт</p>
+                        <p>Нет карт</p>
                     )}
                 </div>
             </div>
