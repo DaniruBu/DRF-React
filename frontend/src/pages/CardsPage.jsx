@@ -75,8 +75,7 @@ function CardsPage(){
             tip="Загрузка данных..."
         >
             <div>
-                <h1>Карты</h1>
-                
+                <h1>Карты</h1> 
                 <CardForm 
                     create={createCard} 
                     categories={categories}

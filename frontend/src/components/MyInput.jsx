@@ -6,7 +6,6 @@ const MyInput = ({...props}) => {
     );
 };
 
-// Добавляем TextArea как статическое свойство
 MyInput.TextArea = Input.TextArea;
 
 export default MyInput;
