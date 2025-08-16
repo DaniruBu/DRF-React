@@ -26,21 +26,21 @@ function CardByIdPage() {
 
     return (
         <Spin spinning={isLoading}>
-            <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+            <div className="card-detail-container">
                 {card && (
                     <Card>
                         <Title level={2}>{card.question}</Title>
                         
                         {card.answer && (
-                            <div style={{ marginBottom: '20px' }}>
+                            <div className="card-answer-section">
                                 <Text strong>Ответ:</Text>
-                                <div style={{ marginTop: '8px', padding: '12px', backgroundColor: '#f5f5f5', borderRadius: '6px' }}>
+                                <div className="card-answer-content">
                                     {card.answer}
                                 </div>
                             </div>
                         )}
                         
-                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                        <div className="card-meta-info">
                             {card.category && (
                                 <Tag color="blue">{card.category.title}</Tag>
                             )}

@@ -2,7 +2,7 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="home-container">
       <h1>Домашняя страница</h1>
     </div>
   );

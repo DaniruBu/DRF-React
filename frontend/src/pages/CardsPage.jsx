@@ -63,18 +63,16 @@ function CardsPage(){
             <div>
                 <h1>Карты</h1> 
                 <CardForm create={createCard} categories={categories} loading={loading} />
-                <div className="cards-list">
-                    {cards?.length > 0 ? (
-                        <CardsList 
-                            remove={deletingCard} 
-                            cards={cards} 
-                            deletingCardId={deletingCardId}
-                            categories={categories}
-                        />
-                    ) : (
-                        <p>Нет карт</p>
-                    )}
-                </div>
+                {cards?.length > 0 ? (
+                    <CardsList 
+                        remove={deletingCard} 
+                        cards={cards} 
+                        deletingCardId={deletingCardId}
+                        categories={categories}
+                    />
+                ) : (
+                    <p>Нет карт</p>
+                )}
             </div>
         </Spin>
     )
