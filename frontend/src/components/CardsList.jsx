@@ -1,3 +1,4 @@
+import React from 'react'
 import CardItem from './CardItem';
 
 const CardsList = ({ cards, remove, deletingCardId = null, categories = [] }) => {  

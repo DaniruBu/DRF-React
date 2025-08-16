@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFetching } from "../hooks/useFetching";
 import CategoriesService from "../api/CategoriesService";
 import CategoriesList from "../components/CategoriesList";
