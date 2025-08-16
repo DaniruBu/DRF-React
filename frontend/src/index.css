@@ -21,6 +21,7 @@ body {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .app-footer {
@@ -39,12 +40,14 @@ h1 {
   text-align: center;
 }
 
-/* Cards */
+/* Cards Grid */
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 24px !important;
   margin-top: 20px;
+  width: 100%;
+  align-items: stretch;
 }
 
 .card-item {
@@ -52,8 +55,14 @@ h1 {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   min-height: 200px;
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  transition: box-shadow 0.2s ease;
+}
+
+.card-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-content {
@@ -67,8 +76,6 @@ h1 {
   flex: 1;
   line-height: 1.5;
   word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .card-text p {
@@ -104,6 +111,12 @@ h1 {
   gap: 16px;
 }
 
+.card-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
 /* Categories */
 .categories-list {
   display: flex;
@@ -119,32 +132,12 @@ h1 {
   min-height: 100px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .app-content {
-    padding: 16px;
-  }
-  
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .card-form {
-    padding: 16px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-}
-
 /* Ant Design overrides */
 .ant-card {
-  margin-bottom: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .ant-card-head {
@@ -194,14 +187,6 @@ h1 {
   color: white !important;
 }
 
-/* Form labels */
-.card-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-/* Menu styling */
 .ant-menu-dark {
   background: #001529;
 }
@@ -213,4 +198,25 @@ h1 {
 
 .ant-layout-content {
   background: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 16px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .card-form {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 }
