@@ -1,9 +1,8 @@
-import React from 'react'
+import RegisterForm from '../components/RegisterForm'
+import { observer } from 'mobx-react-lite'
 
 function RegisterPage() {
-  return (
-    <div>RegisterPage</div>
-  )
+  return <RegisterForm />
 }
 
-export default RegisterPage
+export default observer(RegisterPage)

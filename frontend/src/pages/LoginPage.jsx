@@ -1,9 +1,8 @@
-import React from 'react'
+import LoginForm from '../components/LoginForm'
+import { observer } from 'mobx-react-lite'
 
 function LoginPage() {
-  return (
-    <div>LoginPage</div>
-  )
+  return <LoginForm />
 }
 
-export default LoginPage
+export default observer(LoginPage)
