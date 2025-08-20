@@ -59,12 +59,13 @@ CORS_ALLOW_METHODS = [
 ]
 
 DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': None,
-    'USERNAME_RESET_CONFIRM_URL': None, 
-    'ACTIVATION_URL': None,
-    'SEND_ACTIVATION_EMAIL': False, 
-    'SERIALIZERS': {},
+    'LOGIN_FIELD': "username",
+    "SEND_ACTIVATION_EMAIL": True,
+    'ACTIVATION_URL': "activate/{uid}/{token}",
 }
+
+DOMAIN = 'localhost:5173'
+SITE_NAME = 'DRF-React App'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
@@ -182,3 +183,14 @@ STATIC_URL = "static/"
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Email settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")

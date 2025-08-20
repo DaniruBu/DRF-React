@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'antd'
 import { Link } from 'react-router-dom'
-import MyButton from './MyButton';
+import MyButton from './MyButton'
 import { LoadingOutlined } from '@ant-design/icons'
 
 const CardsItem = ({ card, remove, isDeleting = false, categories = [] }) => {
@@ -45,4 +45,4 @@ const CardsItem = ({ card, remove, isDeleting = false, categories = [] }) => {
     )
 };
 
-export default CardsItem;
+export default CardsItem

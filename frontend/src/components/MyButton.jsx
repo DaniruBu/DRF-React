@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "antd";
+import { Button } from "antd"
 
 const MyButton = ({children, ...props}) => {
     return (
@@ -7,4 +7,4 @@ const MyButton = ({children, ...props}) => {
     );
 };
 
-export default MyButton;
+export default MyButton

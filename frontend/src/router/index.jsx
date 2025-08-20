@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage"
 import CardByIdPage from "../pages/CardByIdPage"
 import LoginPage from "../pages/LoginPage"
 import RegisterPage from "../pages/RegisterPage"
+import ActivatePage from "../pages/ActivatePage"
 
 export const routes = [
     {
@@ -30,5 +31,9 @@ export const routes = [
     {
         path: '/register',
         element: <RegisterPage />
+    },
+    {
+        path: '/activate/:uid/:token',
+        element: <ActivatePage />
     }
 ]

@@ -15,12 +15,12 @@ function CardsPage(){
     const [fetchCards, isLoadingCards, errorCards] = useFetching(async () => {
         const response = await CardsService.getAll()
         setCards(response.data)
-    });
+    })
 
     const [fetchCategories, isLoadingCategories, errorCategories] = useFetching(async () => {
         const response = await CategoriesService.getAll()
         setCategories(response.data)
-    });
+    })
 
     useEffect(() => {
         if (errorCards) message.error('Ошибка загрузки карт')
@@ -30,7 +30,7 @@ function CardsPage(){
     useEffect(() => {
         fetchCards()
         fetchCategories()
-    }, []);
+    }, [])
 
     const createCard = async (cardData) => {
         setLoading(true)
@@ -43,7 +43,7 @@ function CardsPage(){
         } finally {
             setLoading(false)
         }
-    };
+    }
 
     const deletingCard = async (card) => {
         setDeletingCardId(card.id)
@@ -78,4 +78,4 @@ function CardsPage(){
     )
 }
 
-export default CardsPage;
+export default CardsPage

@@ -27,4 +27,9 @@ export default class AuthService {
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
     }
+
+    static async activateAccount(uid, token) {
+        const response = await $api.post('auth/users/activation/', { uid, token })
+        return response
+    }
 }

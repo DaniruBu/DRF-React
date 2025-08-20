@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'antd';
+import { Input } from 'antd'
 
 const MyInput = ({...props}) => {
     return (
@@ -7,6 +7,6 @@ const MyInput = ({...props}) => {
     );
 };
 
-MyInput.TextArea = Input.TextArea;
+MyInput.TextArea = Input.TextArea
 
-export default MyInput;
+export default MyInput
