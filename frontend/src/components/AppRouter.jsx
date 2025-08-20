@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage'
 import CardByIdPage from '../pages/CardByIdPage'
 import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
+import ActivatePage from '../pages/ActivatePage'
 import PrivateRoute from '../router/privateRoute'
 import PublicRoute from '../router/PublicRoute'
 
@@ -22,6 +23,9 @@ const AppRouter = () => (
     <Route path="/register" element={<PublicRoute />}>
       <Route index element={<RegisterPage />} />
     </Route>
+    
+    {/* роут для активации */}
+    <Route path="/activate/:uid/:token" element={<ActivatePage />} />
     
     {/* приватные роуты (только для залогиненных) */}
     <Route path="/cards" element={<PrivateRoute />}>

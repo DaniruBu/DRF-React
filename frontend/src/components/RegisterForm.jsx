@@ -1,83 +1,102 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Form, Input, Button, Card, Typography, Space, message } from 'antd'
+import { UserOutlined, LockOutlined, MailOutlined, UserAddOutlined } from '@ant-design/icons'
 import AuthStore from '../store/store'
-import MyInput from './MyInput'
-import MyButton from './MyButton'
+
+const { Title, Text } = Typography
 
 function RegisterForm() {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (values) => {
     setLoading(true)
     
     try {
-      await AuthStore.register(email, password, username)
-      alert('Регистрация успешна! Теперь вы можете войти.')
+      await AuthStore.register(values.email, values.password, values.username)
+      message.success('Регистрация успешна! Проверьте email для активации аккаунта.')
       navigate('/login')
     } catch (error) {
       console.error('Registration error:', error)
-      alert('Ошибка регистрации. Проверьте данные и попробуйте снова.')
+      message.error('Ошибка регистрации. Проверьте данные и попробуйте снова.')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div>
-      <h2>Регистрация</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Имя пользователя</label>
-          <MyInput
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder="Введите имя пользователя"
-          />
-        </div>
-        
-        <div>
-          <label>Email</label>
-          <MyInput
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Введите email"
-          />
-        </div>
-        
-        <div>
-          <label>Пароль</label>
-          <MyInput
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Введите пароль"
-          />
-        </div>
-        
-        <MyButton
-          type="primary"
-          htmlType="submit"
-          loading={loading}
-        >
-          Зарегистрироваться
-        </MyButton>
-      </form>
-      
-      <div>
-        <p>Уже есть аккаунт?</p>
-        <button onClick={() => navigate('/login')}>
-          Войти
-        </button>
-      </div>
+    <div className="card-detail-container">
+      <Card>
+        <Space direction="vertical" size="large">
+          <Title level={2}>
+            Регистрация
+          </Title>
+          
+          <Form
+            name="register"
+            onFinish={handleSubmit}
+            layout="vertical"
+            size="large"
+          >
+            <Form.Item
+              name="username"
+              label="Имя пользователя"
+              rules={[{ required: true, message: 'Пожалуйста, введите имя пользователя!' }]}
+            >
+              <Input 
+                prefix={<UserOutlined />} 
+                placeholder="Введите имя пользователя" 
+              />
+            </Form.Item>
+            
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                { required: true, message: 'Пожалуйста, введите email!' },
+                { type: 'email', message: 'Пожалуйста, введите корректный email!' }
+              ]}
+            >
+              <Input 
+                prefix={<MailOutlined />} 
+                placeholder="Введите email" 
+              />
+            </Form.Item>
+            
+            <Form.Item
+              name="password"
+              label="Пароль"
+              rules={[{ required: true, message: 'Пожалуйста, введите пароль!' }]}
+            >
+              <Input.Password 
+                prefix={<LockOutlined />} 
+                placeholder="Введите пароль" 
+              />
+            </Form.Item>
+            
+            <Form.Item>
+              <Button 
+                type="primary" 
+                htmlType="submit" 
+                loading={loading}
+                icon={<UserAddOutlined />}
+                className="w-full"
+              >
+                Зарегистрироваться
+              </Button>
+            </Form.Item>
+          </Form>
+          
+          <div className="text-center">
+            <Text>Уже есть аккаунт?</Text>
+            <br />
+            <Button type="link" onClick={() => navigate('/login')}>
+              Войти
+            </Button>
+          </div>
+        </Space>
+      </Card>
     </div>
   )
 }

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useFetching } from "../hooks/useFetching";
-import CategoriesService from "../api/CategoriesService";
-import CategoriesList from "../components/CategoriesList";
-import { Spin, message } from "antd";
+import React, { useEffect, useState } from "react"
+import { useFetching } from "../hooks/useFetching"
+import CategoriesService from "../api/CategoriesService"
+import CategoriesList from "../components/CategoriesList"
+import { Spin, message } from "antd"
 
 function CategoriesPage() {
     const [categories, setCategories] = useState([])
@@ -36,4 +36,4 @@ function CategoriesPage() {
     )
 }
 
-export default CategoriesPage;
+export default CategoriesPage
